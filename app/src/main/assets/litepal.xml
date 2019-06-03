@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<litepal>
+    <dbname value="UserInfo"></dbname>
+    <version value="7"></version>
+    <list>
+        <mapping class="com.shenkangyun.medicalplatform.DBFolder.User" />
+        <mapping class="com.shenkangyun.medicalplatform.DBFolder.canjiType"/>
+        <mapping class="com.shenkangyun.medicalplatform.DBFolder.ServiceProject"/>
+        <mapping class="com.shenkangyun.medicalplatform.DBFolder.LeaseBean"/>
+        <mapping class="com.shenkangyun.medicalplatform.DBFolder.StreetDB"/>
+        <mapping class="com.shenkangyun.medicalplatform.DBFolder.ToApplyDB"/>
+    </list>
+</litepal>
+
+

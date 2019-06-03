@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.shenkangyun.medicalplatform">
+
+    <permission
+        android:name="com.shenkangyun.medicalplatform.permission.JPUSH_MESSAGE"
+        android:protectionLevel="signature" /> <!-- Required -->
+    <uses-permission android:name="com.shenkangyun.medicalplatform.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" /> <!-- Optional. Required for location feature -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" /> <!-- if you want to load images from a file OR from the internet -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 允许读取网络状态 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 允许读取wifi网络状态 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" /> <!-- 这个权限用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 这个权限用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /> <!-- 用于读取手机当前的状态 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- 访问网络，网络定位需要上网 -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- SD卡读取权限，用户写入离线定位数据 -->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" /> <!-- 拨打电话的权限 -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <application
+        android:name=".BaseFolder.MyApp"
+        android:allowBackup="true"
+        android:icon="@drawable/logintitle"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".HomePage.Activity.LimsRecoveryActivity"></activity>
+        <activity android:name=".MinePage.JinduInfoActivity" />
+        <activity android:name=".HomePage.Activity.YufangInfoActivity" />
+        <activity android:name=".ToolPage.Activity.FujuServiceActivity" />
+        <activity android:name=".HomePage.Activity.HearAdultActivity" />
+        <activity android:name=".MinePage.JinduActivity" />
+        <activity android:name=".HomePage.Activity.LimsServiceActivity" />
+        <activity android:name=".HomePage.Activity.MedicineActivity" />
+        <activity android:name=".HomePage.Activity.HearChildActivity" />
+        <activity android:name=".HomePage.Activity.HearServiceActivity" />
+        <activity android:name=".HomePage.Activity.LowVisionActivity" />
+        <activity android:name=".HomePage.Activity.VisionServiceActivity" />
+        <activity android:name=".HomePage.Activity.ShiliActivity" />
+        <activity android:name=".HomePage.Activity.TingliActivity" />
+        <activity android:name=".HomePage.Activity.GuduActivity" />
+        <activity android:name=".HomePage.Activity.NaotanActivity" />
+        <activity android:name=".HomePage.Activity.KangfuServiceActivity" />
+        <activity android:name=".HomePage.Activity.ZhiliActivity" />
+        <activity android:name=".HomePage.Activity.ChildServiceActivity" />
+        <activity
+            android:name=".ToolPage.Activity.ToolsApplyActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <receiver
+            android:name=".UtilsFolder.NetworkChangeReceiver"
+            android:enabled="true"
+            android:exported="true" />
+
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="PycOkUnvcXvHqdDLiOVfqN1ewOctXybl" />
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" />
+
+        <meta-data
+            android:name="IFLYTEK_APPKEY"
+            android:value="5aec0da9" />
+        <meta-data
+            android:name="IFLYTEK_CHANNEL"
+            android:value="Android_Demo" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.shenkangyun.medicalplatform.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider> <!-- Required SDK 核心功能 -->
+        <provider
+            android:name=".UtilsFolder.ImageFileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            tools:replace="android:authorities">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider> <!-- 可配置android:process参数将PushService放在其他进程中 -->
+        <service
+            android:name="cn.jpush.android.service.PushService"
+            android:enabled="true"
+            android:exported="false"
+            android:process=":pushcore">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTER" />
+                <action android:name="cn.jpush.android.intent.REPORT" />
+                <action android:name="cn.jpush.android.intent.PushService" />
+                <action android:name="cn.jpush.android.intent.PUSH_TIME" />
+            </intent-filter>
+        </service> <!-- Required SDK核心功能 -->
+        <receiver
+            android:name="cn.jpush.android.service.PushReceiver"
+            android:enabled="true"
+            android:exported="false"
+            android:process=":pushcore">
+            <intent-filter android:priority="1000">
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />
+                <!-- Required 显示通知栏 -->
+                <category android:name="com.shenkangyun.medicalplatform" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+            <!-- Optional -->
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver> <!-- Required SDK核心功能 -->
+        <receiver
+            android:name="cn.jpush.im.android.helpers.IMReceiver"
+            android:enabled="true"
+            android:exported="false" /> <!-- Required SDK核心功能 -->
+        <receiver
+            android:name="cn.jpush.android.service.AlarmReceiver"
+            android:exported="false" /> <!-- Required since JCore 1.1.7. SDK 核心功能 -->
+        <provider
+            android:name="cn.jpush.android.service.DataProvider"
+            android:authorities="com.shenkangyun.medicalplatform.DataProvider"
+            android:exported="true" /> <!-- Required. For publish channel feature -->
+        <!-- JPUSH_CHANNEL 是为了方便开发者统计APK分发渠道。 -->
+        <!-- 例如: -->
+        <!-- 发到 Google Play 的APK可以设置为 google-play; -->
+        <!-- 发到其他市场的 APK 可以设置为 xxx-market。 -->
+        <!-- 目前这个渠道统计功能的报表还未开放。 -->
+        <meta-data
+            android:name="JPUSH_CHANNEL"
+            android:value="developer-default" /> <!-- Required. AppKey copied from Portal -->
+        <meta-data
+            android:name="JPUSH_APPKEY"
+            android:value="51da00b2db7e9d744e3452c1" />
+
+        <activity android:name=".LoginPage.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainPage.MainActivity" />
+        <activity
+            android:name=".ToolPage.Activity.ToolDetailsActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity android:name=".CommunityPage.PublishInfoActivity" />
+        <activity android:name=".CommunityPage.CommunityInfoActivity" />
+        <activity android:name=".MinePage.AboutActivity" />
+        <activity android:name=".MinePage.ChangeWordActivity" />
+        <activity android:name=".MinePage.MinePageActivity" />
+        <activity android:name=".HomePage.Activity.ChildrenActivity" />
+        <activity android:name=".HomePage.Activity.ChildrenInfoActivity" />
+        <activity android:name=".HomePage.Activity.VisionActivity" />
+        <activity android:name=".HomePage.Activity.VisionInfoActivity" />
+        <activity android:name=".HomePage.Activity.HearingActivity" />
+        <activity android:name=".HomePage.Activity.HearingInfoActivity" />
+        <activity android:name=".HomePage.Activity.LimbsActivity" />
+        <activity android:name=".HomePage.Activity.LimbsInfoActivity" />
+        <activity android:name=".HomePage.Activity.SpiritActivity" />
+        <activity android:name=".HomePage.Activity.SpiritInfoActivity" />
+        <activity android:name=".HomePage.Activity.IntelligenceActivity" />
+        <activity android:name=".HomePage.Activity.IntelligenceInfoActivity" />
+        <activity android:name=".HomePage.Activity.SpeechActivity" />
+        <activity android:name=".HomePage.Activity.SpeechInfoActivity" />
+        <activity android:name=".HomePage.Activity.PreventionActivity" />
+        <activity android:name=".HomePage.Activity.PregnantActivity" />
+        <activity android:name=".HomePage.Activity.ReportActivity" />
+        <activity android:name=".HomePage.Activity.YufangActivity" />
+        <activity android:name=".HomePage.Activity.AdaptationActivity" />
+        <activity android:name=".HomePage.Activity.PositionInfoActivity" />
+        <activity android:name=".HomePage.Activity.DiagnosisActivity" />
+        <activity android:name=".HomePage.Activity.FavouredPolicyActivity" />
+        <activity android:name=".HomePage.Activity.StreetActivity" />
+        <activity android:name=".HomePage.Activity.ClinicActivity" />
+        <activity android:name=".HomePage.Activity.FavouredInfoActivity" />
+        <activity android:name=".HomePage.Activity.ServiceActivity" />
+        <activity android:name=".HomePage.Activity.VolunteerActivity" />
+        <activity android:name=".HomePage.Activity.HousekeepingActivity" />
+        <activity android:name=".SpeechPage.IatSettings" />
+        <activity
+            android:name=".SpeechPage.IatDemo"
+            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".IMPage.JMessageActivity"
+            android:launchMode="singleTask" />
+        <activity android:name=".IMPage.AcceptFriendActivity" />
+        <activity android:name=".CommunityPage.CommunityPageActivity" />
+    </application>
+
+</manifest>

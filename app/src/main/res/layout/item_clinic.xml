@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/dp_10"
+    android:layout_marginRight="@dimen/dp_10"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="2dp"
+        app:contentPadding="@dimen/dp_10">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_unitName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="机构名称"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/icon_contacts"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_below="@+id/tv_unitName"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/contacts_icon" />
+
+            <TextView
+                android:id="@+id/tv_contacts"
+                android:layout_width="90dp"
+                android:layout_height="match_parent"
+                android:layout_alignBottom="@+id/icon_contacts"
+                android:layout_alignTop="@+id/icon_contacts"
+                android:layout_below="@+id/tv_unitName"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/icon_contacts"
+                android:gravity="center_vertical"
+                android:textColor="@color/textContent"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:id="@+id/icon_tel"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_below="@+id/tv_unitName"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@+id/tv_contacts"
+                android:src="@drawable/tel_icon" />
+
+            <TextView
+                android:id="@+id/tv_phone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignBottom="@+id/icon_tel"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/icon_tel"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/icon_tel"
+                android:gravity="center_vertical"
+                android:textColor="@color/head_bg"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_scope"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/icon_contacts"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_subsidy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_scope"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_subsidy"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>
